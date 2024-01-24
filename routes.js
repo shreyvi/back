@@ -11,4 +11,5 @@ router.get('/salaryB',user.salaryB);
 router.get('/salaryC',user.salaryC);
 router.put('/editUser/:Id', user.editUser);
 
+
 module.exports = router;

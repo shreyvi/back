@@ -94,6 +94,39 @@ function editUser(req,res){
 
 }
 
+function addUser(req,res){
+    const {firstName, lastName, contact, salary, department} = req.body;
+    const insertUserQuery = `INSERT INTO employeeinfo(FirstName, LastName, Contact, Salary, Department) VALUES (?,?,?,?,?)`;
+
+    connection.query(insertUserQuery,[firstName, lastName, contact, salary, department], (insertUserError, insertUserResult) =>{
+        if(insertUserError){
+            return res.status(401).json({message : "error while inserting user"});
+        }
+        res.status(200).json({message : "user Inserted Successfully"});
+    });
+}
+
+function deleteUser(req, res){
+    const Id = req.params.Id;
+    const deleteUserQuery = `DELETE FORM employeeinfo WHERE ID = ?`;
+    const checkUserQuery = `SELECT * FROM employeeinfo WHERE ID = ?`;
+
+    connection.query(checkUserQuery, [Id], (checkUserError, checkUserResult) =>{
+        if(checkUserError){
+            return res.status(401).json({message : "error while checking user"})
+        }
+        if(checkUserResult.length === 0){
+            return res.status(404).json({message : "no user found"})
+        }
+    connection.query(deleteUserQuery, [Id], (deleteUserError, deleteUserResult) =>{
+        if(deleteUserError){
+            return res.status(401).json({message : "error while deleting user"});
+        }
+        res.status(200).json({message : "delete user successfully"})
+    });
+});
+}
+
 module.exports = {
     employeedata,
     employeedatabyid,
