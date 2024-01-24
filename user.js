@@ -57,7 +57,7 @@ function salaryA (req,res) {
 }
 
 function salaryB (req,res) {
-    const fetchsalquery = `SELECT * FROM employeeinfo WHERE Salary BETWEEN 15000 AND 25000 ORDER BY Salary;`;
+    const fetchsalquery = `SELECT * FROM employeeinfo WHERE Salary BETWEEN 15001 AND 25000 ORDER BY Salary;`;
 
     connection.query(fetchsalquery, (fetchsalerror,fetchsalresult) => {
         if(fetchsalerror){
@@ -68,7 +68,7 @@ function salaryB (req,res) {
 }
 
 function salaryC (req,res) {
-    const fetchsalquery = `SELECT * FROM employeeinfo WHERE Salary BETWEEN 25000 AND 30000 ORDER BY Salary;`;
+    const fetchsalquery = `SELECT * FROM employeeinfo WHERE Salary BETWEEN 25001 AND 30000 ORDER BY Salary;`;
 
     connection.query(fetchsalquery, (fetchsalerror,fetchsalresult) => {
         if(fetchsalerror){
