@@ -79,11 +79,27 @@ function salaryC (req,res) {
 }
 
 
+function editUser(req,res){
+    const Id = req.params.Id;
+    const {firstName, lastName, contact, salary, department} = req.body;
+    const editUserQuery = `UPDATE employeeinfo SET FirstName = ?, LastName = ?, Contact = ?, Salary = ?, Department = ? WHERE ID = ?`;
+
+    connection.query(editUser, [firstName, lastName, contact, salary, department, Id], (editUserError,editUserResult) =>{
+        if(editUserError){
+            console.log(editUserError);
+            return res.status(401).json({message : 'error while updating user'});
+        }
+        res.status(200).json({message : 'user Updated Successfully'});
+    })
+
+}
+
 module.exports = {
     employeedata,
     employeedatabyid,
     department,
     salaryA,
     salaryB,
-    salaryC
+    salaryC,
+    editUser,
 };
