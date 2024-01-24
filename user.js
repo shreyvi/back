@@ -84,7 +84,7 @@ function editUser(req,res){
     const {firstName, lastName, contact, salary, department} = req.body;
     const editUserQuery = `UPDATE employeeinfo SET FirstName = ?, LastName = ?, Contact = ?, Salary = ?, Department = ? WHERE ID = ?`;
 
-    connection.query(editUser, [firstName, lastName, contact, salary, department, Id], (editUserError,editUserResult) =>{
+    connection.query(editUserQuery, [firstName, lastName, contact, salary, department, Id], (editUserError,editUserResult) =>{
         if(editUserError){
             console.log(editUserError);
             return res.status(401).json({message : 'error while updating user'});
